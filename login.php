@@ -25,7 +25,7 @@
             if($rows==1){
                 $_SESSION['username']=$username;
 
-                header("Location: wiki.php?short_title=371");
+                header("Location: index.php");
             }else{
             echo "<div class= 'form'>
             <h3>Username/Password is incorrect</h3>
@@ -41,7 +41,7 @@
                     <input class="text" type="password" name="password" placeholder="Password" required />
                     <input class="submitbttn" type="submit" name="submit" value="Login" />
                 </form>
-                <p>Not Registered? <a href='createuser.php'>Register Here</a></p>
+                <p>Need An Account? <a href='createuser.php'>Register Here!</a></p>
             </div>
             <?php } ?>
         

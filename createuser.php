@@ -49,6 +49,7 @@
                     <input class="text" type="password" name="password" placeholder="Password" required />
                     <input class="submitbttn" type="submit" name="submit" value="Register"/>
                 </form>
+                <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
             </div>
             <?php } ?>
         
