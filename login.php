@@ -17,7 +17,7 @@
         }
 
         if (isset($_POST['username']) && isset($_POST['password'])){
-            $db = new mysqli("localhost", "root", "", "wiki");
+            $db = new mysqli("localhost", "root", "", "social");
             $input = "SELECT * FROM users WHERE username='$username' and password='".md5($password)."'";
             $result= $db->query($input);
             $rows = mysqli_num_rows($result);
