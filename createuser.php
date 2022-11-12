@@ -45,7 +45,7 @@
                     echo "<div class ='form'>
                     <h3>Email and Username are already in use</h3>
                     <br/><a href='createuser.php'>Register With A New Email And Username</a>
-                    </div>";
+                    </div>"; 
                 }
                 elseif($email==($row['email'])){
                     echo "<div class ='form'>
