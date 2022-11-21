@@ -9,26 +9,28 @@
     <body>
         <?php
         session_start();
-        if(isset($_POST['username'])){
-            $username = $_POST['username'];
+        if(isset($_POST['email'])){
+            $email = $_POST['email'];
         }
         if(isset($_POST['password'])){
             $password = $_POST['password'];
         }
 
-        if (isset($_POST['username']) && isset($_POST['password'])){
+        if (isset($_POST['email']) && isset($_POST['password'])){
             $db = new mysqli("localhost", "root", "", "social");
-            $input = "SELECT * FROM users WHERE username='$username' and password='".md5($password)."'";
+            $input = "SELECT * FROM users WHERE email='$email' and password='".md5($password)."'";
             $result= $db->query($input);
             $rows = mysqli_num_rows($result);
 
             if($rows==1){
-                $_SESSION['username']=$username;
+                $row = mysqli_fetch_assoc($result);
+                $first_name = $row['first_name'];
+                $_SESSION['first_name']=$first_name;
 
                 header("Location: index.php");
             }else{
             echo "<div class= 'form'>
-            <h3>Username/Password is incorrect</h3>
+            <h3>Email/Password is incorrect</h3>
             <br/>Click Here To <a href='login.php'>Login</a>
             </div>";
             }
@@ -37,7 +39,7 @@
             <div class="form">
                 <h1>Login</h1>
                 <form name="login" action="" method="POST">
-                    <input class="text" type="text" name="username" placeholder="Username" required />
+                    <input class="text" type="text" name="email" placeholder="Email Address" required />
                     <input class="text" type="password" name="password" placeholder="Password" required />
                     <input class="submitbttn" type="submit" name="submit" value="Login" />
                 </form>
