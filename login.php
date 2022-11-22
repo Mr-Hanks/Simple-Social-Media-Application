@@ -27,8 +27,8 @@
 
             if($rows==1){
                 $row = mysqli_fetch_assoc($result);
-                $first_name = $row['first_name'];
-                $_SESSION['first_name']=$first_name;
+                $user_name = $row['username'];
+                $_SESSION['username']=$user_name;
 
                 header("Location: index.php");
             }else{
