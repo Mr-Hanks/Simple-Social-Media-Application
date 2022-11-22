@@ -21,7 +21,7 @@ p{
 }
 
 .wrapper {
-    background-image: url("../images/backgrounds/desktop.jpg");
+    background-image: url("assets/images/backgrounds/background.jpg");
     background-size: cover;
     width:100%;
     height: 100%;          /* adjusts the background image  */
