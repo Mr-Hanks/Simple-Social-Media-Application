@@ -45,7 +45,7 @@
                         <h1>OnlyFriends</h1>
                         <p>Login or sign up below!</p>
                     </div>
-                    <div id="first">
+                    <div>
                         <form name="login" action="" method="POST">
                             <input type="email" name="email" placeholder="Email Address" required />
                             <input type="password" name="password" placeholder="Password" required /> <br>

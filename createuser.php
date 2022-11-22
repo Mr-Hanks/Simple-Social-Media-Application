@@ -4,7 +4,6 @@
     <head>
         <title>Registration</title> 
         <meta charset="utf-8"/>
-        <link href="style.css" type="text/css" rel="stylesheet">
         <link href="register.css" type="text/css" rel="stylesheet">
     </head>
 
@@ -89,19 +88,25 @@
             }
         }else{
             ?>
-            <div class="form">
-                <h1>Registration</h1>
-                <form name="registration" action="" method="POST">
-                    <input class ="text" type="text" name="firstName" placeholder="First Name" required/>
-                    <input class ="text" type="text" name="lastName" placeholder="Last Name" required/>
-                    <input class ="text" type="text" name="email" placeholder="Email" required/>
-                    <input class ="text" type="text" name="confirmEmail" placeholder="Confirm Email" required/>
-                    <input class="text" type="text" name="username" placeholder="Username" required />
-                    <input class="text" type="password" name="password" placeholder="Password" required />
-                    <input class ="text" type="password" name="confirmPassword" placeholder="Confirm Password" required/>
-                    <input class="submitbttn" type="submit" name="submit" value="Register"/>
-                </form>
-                <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+            <div class="wrapper">
+                <div class="login-box">
+                    <div class="login-header">
+                        <h1>Registration</h1>
+                    </div>
+                    <div>
+                        <form name="registration" action="" method="POST">
+                            <input type="text" name="firstName" placeholder="First Name" required/>
+                            <input type="text" name="lastName" placeholder="Last Name" required/>
+                            <input type="text" name="email" placeholder="Email" required/>
+                            <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                            <input type="text" name="username" placeholder="Username" required />
+                            <input type="password" name="password" placeholder="Password" required />
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                            <input type="submit" name="submit" value="Register"/>
+                        </form>
+                        <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                    </div>
+                </div>
             </div>
             <?php } ?>
         
