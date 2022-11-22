@@ -7,8 +7,7 @@
         <link href="register.css" type="text/css" rel="stylesheet">
     </head>
 
-    <body>
-        
+    <body>       
         <?php
         session_start();
         if(isset($_POST['email'])){

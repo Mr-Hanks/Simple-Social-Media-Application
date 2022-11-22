@@ -1,0 +1,381 @@
+@font-face {
+    font-family: 'Bellota-LightItalic';
+    src: url(../fonts/Bellota-LightItalic.otf);
+}
+@font-face {
+    font-family: 'Bellota-BoldItalic';
+    src: url(../fonts/Bellota-BoldItalic.otf);
+}
+
+html {
+    height: 100%; /* might be unnecessary */
+}
+
+body {
+    line-height: 17px;
+    background-color: #E6EAE8;
+    height: 100%;
+}
+
+a {
+    color:  #480b6f ;
+    text-decoration: none;
+}
+
+.top_bar {
+    width: 100%;
+    min-width: 1050px;
+    height: 40px;
+    background-color: #9920e5;
+    border-bottom: 5px solid #480b6f;
+    margin: 0 0 10px 0;
+    display: inline-flex;
+    position: fixed;
+    z-index: 10;
+}
+
+.logo a {
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    margin-left: 10px;
+    font-size: 1.5rem;
+    position: relative;
+    top: 9px;
+    text-shadow: #370754 .5px .5px 2px;
+    color: #bc71eb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+nav {
+    float: right;
+    right: 5px;
+    position: absolute;
+    margin: 10px;
+}
+
+nav a {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+nav a:hover {
+    border-bottom: 5px solid #e67e22;
+    color: #fff;
+}
+
+.wrapper {
+    margin: 0 auto;
+    top: 50px;
+    position: relative;
+    padding: 0 10px;
+    width: 75%;
+    min-width: 950px;
+
+    height: calc(100% - 40px); /* might be unnecessary */
+}
+
+.column {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px #D3D3D3;
+    z-index: -1;
+}
+
+.user_details {
+    width: 255px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.user_details_left_right {
+    width: 125px;
+    display: inline-block;
+    position: absolute;
+}
+
+.user_details img {
+    height: 125px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.main_column {
+    float: right;
+    width: 70%;
+    z-index: -1;
+    min-height: 170px;
+}
+
+.post_form {
+    width: 100%;
+}
+
+.post_form textarea {
+    padding: 5px;
+    width: 83%;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 5px;
+    border: 1px solid #D3D3D3;
+    font-size: 12px;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.post_form input[type="submit"] {
+    width: 11%;
+    height: 60px;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    background-color: #9920e5;
+    color: #fff;
+    text-shadow: #73B6E2 .5px .5px 2px;
+    font-size: 90%;
+    position: absolute;
+    margin: 0;
+    outline: 0;
+}
+
+.post_form input[type="submit"]:active {
+    padding: 5px 4px 4px 5px;
+    color:#eee;
+} 
+
+.status_post {
+    width: 96%;
+    font-size:  15px;
+    padding: 0px 5px;
+    min-height: 75px;
+    cursor: pointer;
+}
+.post_profile_pic {
+    float: left;
+    margin-right: 6px;
+}
+
+.post_profile_pic img {
+    border-radius: 50%;
+}
+
+#comment_iframe {
+    width: 100%;
+    max-height: 250px;
+    margin-top: 6px;
+}
+
+.comment_section {
+    padding: 0px 5px 5px 5px;
+}
+
+.comment_section img {
+    margin: 0 3px 3px 3px;
+    border-radius: 3px;
+}
+
+#comment_form textarea {
+    border-color: #D3D3D3;
+    width: 85%;
+    height: 35px;
+    border-radius: 5px;
+    color: #616060;
+    font-size: 14px;
+    margin: 3px 3px 3px 5px;
+}
+
+#comment_form input[type="submit"] {
+    border:none;
+    background-color: #9920e5;
+    width: 13%;
+    height: 35px;
+    /* float:right; */
+    position: absolute;
+    border-radius: 5px;
+    color: #fdf;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    text-shadow: #73B6E2 .5px .5px 2px;
+    margin: 3px 3px 3px 5px;
+    cursor:pointer;
+}
+
+.comment_like {
+    cursor:pointer;
+}
+
+.newsfeedPostOptions {
+    padding: 0;
+    text-decoration: none;
+    color: #480b6f;
+    border:none;
+}
+
+.newsfeedPostOptions iframe {
+    border: 0px;
+    height: 18px;
+    width: 120px;
+}
+
+.comment_like {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: #480b6f;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: auto;
+}
+
+.like_value {
+    display: inline;
+    font-size: 14px;
+}
+
+.button_holder {
+    background-color: #F1F1F1;
+    border: thin solid #e5e5e5;
+    cursor: pointer;
+    float:left;
+    height: 23px;
+    text-align: center;
+    width: 50px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.button_holder img {
+    margin-top: 1px;
+    width: 20px;
+}
+
+.profile_left {
+    position: fixed;
+    top: 40px;
+    bottom: 0px;
+    height: auto;
+    width: 17%;
+    background-color: #9920e5;
+    border-right: 10px solid #480b6f;
+    color: #cb77ff;
+    margin-right: 20px;
+}
+
+.profile_left img {
+    min-width: 80px;
+    width: 55%;
+    margin: 20px;
+    border: 5px solid #9920e5;
+    border-radius: 100%;
+}
+
+.profile_info {
+    display: list-item;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 10px 0 10px 0;
+}
+
+.profile_info p {
+    margin: 0 0 0 20px;
+    word-wrap: break-word;
+}
+
+
+
+.default {
+    background-color: #bdc3c7;
+}
+.info {
+    background-color: #9920e5;
+}
+.deep_purple {
+    background-color: #370754;
+}
+
+.profile_left input[type="submit"] {
+    width: 90%;
+    height: 30px;
+    border-radius: 5px;
+    margin: 7px 0 0 7px;
+    border: none;
+    color: #fff;
+}
+
+
+.delete_button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    float: right;
+    border-radius: 4px;
+    right: -15px;
+    position: relative;
+    background-color: #e74c3c;
+}
+
+.profile_main_column {
+    min-width: 675px;
+    float: left;
+    left: 400px;
+    width: 70%;
+    z-index: 1;
+    position: relative;
+}
+
+.profile_info_bottom {
+    margin: 10px 0 0 7px;
+}
+
+#grey {
+    color: #8a8787;
+}
+
+.resultDisplay {
+    padding: 5px 5px 0 5px;
+    height: 60px;
+    border-bottom: 1px solid #D3D3D3;
+}
+.resultDisplay a {
+    float:none;
+}
+.resultDisplay:hover {
+    background-color: #EBEBEB;
+    text-decoration: none;
+}
+
+
+.result_profile_pic {
+	float: left;
+    margin-right: 10px;
+}
+
+
+.tab-content {
+    margin-top: 25px;
+}
+
+.timestamp_smaller {
+    font-size: 85%;
+    margin: 0;
+}
+
+#small_profile_pic {
+    height: 55px;
+    margin: 1px 12px 0 2px;
+    float: left;
+}
+
+.postedImage img {
+    max-height: 300px;
+    max-width: 100%;
+    display: block;
+    margin: 5px auto;
+}
