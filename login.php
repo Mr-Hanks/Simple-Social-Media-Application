@@ -48,7 +48,7 @@
                     <div id="first">
                         <form name="login" action="" method="POST">
                             <input type="email" name="email" placeholder="Email Address" required />
-                            <input type="password" name="password" placeholder="Password" required />
+                            <input type="password" name="password" placeholder="Password" required /> <br>
                             <input type="submit" name="submit" value="Login" />
                         </form>
                         <p>Need An Account? <a href='createuser.php'>Register Here!</a></p>
