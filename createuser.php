@@ -8,6 +8,7 @@
         <title>Registration</title> 
         <meta charset="utf-8"/>
         <link href="style.css" type="text/css" rel="stylesheet">
+        <link href="register.css" type="text/css" rel="stylesheet">
     </head>
 
     <body>
