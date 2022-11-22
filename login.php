@@ -32,10 +32,24 @@
 
                 header("Location: index.php");
             }else{
-            echo "<div class= 'form'>
-            <h3>Email/Password is incorrect</h3>
-            <br/>Click Here To <a href='login.php'>Login</a>
-            </div>";
+               ?> <div class="wrapper">
+                <div class="login-box">
+                    <div class="login-header">
+                        <h1>OnlyFriends</h1>
+                        <p>Login or sign up below!</p>
+                    </div>
+                    <div>
+                        <form name="login" action="" method="POST">
+                        <?php echo "Email/Password is incorrect"; ?>
+                            <input type="email" name="email" placeholder="Email Address" required />
+                            <input type="password" name="password" placeholder="Password" required /> <br>
+                            <input type="submit" name="submit" value="Login" />
+                        </form>
+                        <p>Need An Account? <a href='createuser.php'>Register Here!</a></p>
+                    </div>
+                </div>
+            </div>
+            <?php
             }
         }else{
             ?>
