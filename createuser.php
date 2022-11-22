@@ -77,7 +77,15 @@
 
             }
             else{
-                $query = "INSERT INTO users (first_name, last_name, email, username, password) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."')";
+                $rand = rand(1, 2); //Random nr between 1 and 2
+
+                if ($rand == 1){ 
+                    $profile_pic = "assets/images/profile_pics/defaults/head_amethyst.png";
+                }
+                else if ($rand == 2){ 
+                    $profile_pic = "assets/images/profile_pics/defaults/head_wet_asphalt.png";
+                }
+                $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',test,')";
                 $db->query($query);
                 if($db){
                     echo "<div class ='form'>
