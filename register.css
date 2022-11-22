@@ -16,6 +16,10 @@ a {
     color: #3498db;
 }
 
+p{
+    text-align: center;
+}
+
 .wrapper {
     background-image: url("../images/backgrounds/desktop.jpg");
     background-size: cover;
@@ -67,6 +71,7 @@ input[type="submit"] {
     color: #fff;
     font-family: 'Bellota', cursive;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
