@@ -1,4 +1,6 @@
-<?php require '../../config/config.php'; //getting $con var
+<?php 
+
+require '../../config/config.php'; //getting $con var
 include("../classes/User.php"); //Call in the USER CLASS
 include("../classes/Post.php"); //Call in the Post CLASS
 

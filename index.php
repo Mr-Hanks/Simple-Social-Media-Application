@@ -22,11 +22,11 @@ if (isset($_POST['post'])) {
 <!-- USER DETAILS -->
 <div class="user_details column">
     <!-- comes from header page, rewrite in .htaccess -->
-    <a href="<?php echo $userLoggedIn; ?>">
+    <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">
         <img src="<?php echo $user['profile_pic']; ?>" alt="Profile picture">
     </a>
     <div class="user_details_left_right">
-        <a href="<?php echo $userLoggedIn; ?>">
+        <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">
             <?php
             echo $user['first_name'] . " " . $user['last_name'];
             ?>

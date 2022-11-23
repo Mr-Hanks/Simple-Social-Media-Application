@@ -1,23 +1,3 @@
-<?php require 'config/config.php'; //getting $con var
-include("includes/classes/User.php"); //Call in the USER CLASS
-include("includes/classes/Post.php"); //Call in the Post CLASS
-
-
-//If user is logged in 
-if (isset($_SESSION['username'])) {
-    $userLoggedIn = $_SESSION['username'];
-
-    //Get user details from db
-    $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
-
-    $user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
-
-} else {
-    header("Location: login.php"); //If not logged in, redirect to register
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,18 +28,34 @@ if (isset($_SESSION['username'])) {
     
 </head>
 
+<?php require 'config/config.php'; //getting $con var
+include("includes/classes/User.php"); //Call in the USER CLASS
+include("includes/classes/Post.php"); //Call in the Post CLASS
+
+
+//If user is logged in 
+if (isset($_SESSION['username'])) {
+    $userLoggedIn = $_SESSION['username'];
+
+    //Get user details from db
+    $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
+
+    $user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+
+} else {
+    header("Location: login.php"); //If not logged in, redirect to register
+}
+
+?>
+
 <body>
 
     <div class="top_bar">
         <div class="logo">
             <a href="index.php">OnlyFriends</a>
         </div>
-
-        <!-- SEARCH FORM -->
-        
-
         <nav>
-            <a href="<?php echo $userLoggedIn; ?>">
+            <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">
                 <?php
                 echo $user['first_name'];
                 ?>
@@ -84,12 +80,8 @@ if (isset($_SESSION['username'])) {
             <a href="logout.php">
                 <i class="fa-solid fa-right-from-bracket"></i>
             </a>
-        </nav>
-
-
-        </div>
+        </nav> 
         
-
     </div>
 
-    <div class="wrapper">
+    <div class="wrapper"> 
