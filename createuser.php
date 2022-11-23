@@ -185,7 +185,7 @@
                         </div> <?php
             }
             else{
-                $rand = rand(1, 2); //Random nr between 1 and 2
+                $rand = rand(1, 2, 3); //Random number between 1 and 3
 
                 if ($rand == 1){ 
                     $profile_pic = "assets/images/profile_pics/head_deep_blue.png";
