@@ -68,8 +68,6 @@
         $date_time_now = date("Y-m-d H:i:s");
 
         $insertpost = mysqli_query($con, "INSERT INTO comments VALUES ('', '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id')");
-
-        //Insert notification
         
 
         //Select all people that have commented on the post
@@ -172,13 +170,13 @@
             ?>
             <!-- Comment section HTML -->
             <div class="comment_section">
-            <a href="<?php echo $posted_by; ?>" target="_parent">
+            <a href="<?php echo "profile.php?profile_username=$posted_by"; ?>" target="_parent">
                 <img src="<?php echo $user_obj->getProfilePic(); ?>" alt="Comment_profile_pic" title="<?php echo $posted_by; ?>" style="float:left; height: 30px;">
             </a>
-            <a href="<?php echo $posted_by; ?>" target="_parent">
+            <a href="<?php echo "profile.php?profile_username=$posted_by"; ?>" target="_parent">
                 <b><?php echo $user_obj->getFirstAndLastName(); ?> </b>
             </a>
-            &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $time_message . "<br>" . $comment_body; ?>
+            <?php echo $time_message . "<br>" . $comment_body; ?>
             <hr>
             </div>
 

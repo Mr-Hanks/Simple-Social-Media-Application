@@ -29,26 +29,6 @@ class Post
         //Does not let the user enter just spaces into the db
         if ($check_empty != "") {
 
-            //Split the post at spaces into an array
-            $body_array = preg_split("/\s+/", $body);
-
-            foreach($body_array as $index => $value) {
-
-                if (strpos($value, "www.youtube.com/watch?v=") !== false) {
-
-                    //Replace watch with embed, so it would show yt embed box
-                    // https://www.youtube.com/watch?v=3IXQKs8ZSrs&list=WL&index=2&t=904s
-
-                    $link = preg_split("!&!", $value); //Splits at "&"
-                    $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-                    $value = "<br><iframe width=\'420\' height=\'315\' src=\'" . $value . "\'></iframe><br>";
-
-                    $body_array[$index] = $value;
-                } 
-            }
-
-            $body = implode(" ", $body_array); //Make a string of the array!
-
             //Current date & time
             $date_added = date("Y-m-d H:i:s");
             //Get username
@@ -222,7 +202,7 @@ class Post
                                 </div>
 
                                 <div class='newsfeedPostOptions'>
-                                    Comments($comments_check_num)&nbsp;&nbsp;&nbsp;
+                                    Comments($comments_check_num)
                                     <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
                                 </div>
                             </div>
@@ -405,7 +385,7 @@ class Post
                                 </div>
 
                                 <div class='posted_by' style='color: #ACACAC;'>
-                                    <a href='profile.php?profile_username=$added_by'>$first_name $last_name </a> &nbsp;&nbsp;&nbsp;$time_message
+                                    <a href='profile.php?profile_username=$added_by'>$first_name $last_name </a> $time_message
                                     $delete_button
                                 </div>
                                 <div id='post_body'>
@@ -416,7 +396,7 @@ class Post
                                 </div>
 
                                 <div class='newsfeedPostOptions'>
-                                    Comments($comments_check_num)&nbsp;&nbsp;&nbsp;
+                                    Comments($comments_check_num)
                                     <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
                                 </div>
                             </div>
