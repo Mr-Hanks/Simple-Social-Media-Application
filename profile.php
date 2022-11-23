@@ -56,17 +56,11 @@ if (isset($_GET['profile_username'])) {
 <div class="profile_main_column column">
 
     <!-- TABS -->
-    <ul class="nav nav-tabs" id="profileTabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#newsfeed_div" role="tab" aria-controls="newsfeed_div" aria-selected="true">Newsfeed</a>
-        </li>
-        
-        
-    </ul>
+    
 
     <!-- TABS CONTENT -->
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="newsfeed_div" role="tabpanel" aria-labelledby="home-tab">
+    <div>
+        <div>
             <div class="posts_area">
                 <!-- Posts are going to be loaded via ajax, 10 at a time -->
             </div>

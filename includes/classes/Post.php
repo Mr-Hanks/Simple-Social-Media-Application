@@ -216,13 +216,12 @@ class Post
                    
                     $(document).ready(function() {
                         $('#post<?php echo $id; ?>').on('click', function() {
-                            // Comes with bootstrap JS
                             bootbox.confirm("Are you sure you want to delete this post?", function(result) {
                                 $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {
                                     result: result
                                 });
 
-                                if (result) { //if result is true/exists
+                                if (result) { 
                                     location.reload()
                                 }
                             });
@@ -233,7 +232,7 @@ class Post
 
             } //END WHILE LOOP
 
-            //If there is some posts still left after 10 have been loaded - for ajax 
+            //If there are some posts still left after 10 have been loaded - for ajax 
             if ($count > $limit) {
                 //Increase the "page" size with a hidden page number, so ajax would load the next posts
                 $html .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'> 
