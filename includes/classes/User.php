@@ -17,8 +17,6 @@ class User {
         return $this->user['username']; //Used in Post.php class for example
     }
 
-    
-
     public function getNumPosts() {
         $username = $this->user['username'];
         $query = mysqli_query($this->con, "SELECT num_posts FROM users WHERE username='$username'"); 
@@ -54,12 +52,6 @@ class User {
             return false;
         } //Needle, haystack
     }
-    
-    
-
-    
-
-   
 
     public function getFriendArray() {
         $username = $this->user['username'];
