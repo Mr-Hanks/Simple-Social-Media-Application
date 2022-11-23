@@ -185,7 +185,7 @@
                         </div> <?php
             }
             else{
-                $rand = rand(1, 2, 3); //Random number between 1 and 3
+                $rand = rand(1,3); //Random number between 1 and 3
 
                 if ($rand == 1){ 
                     $profile_pic = "assets/images/profile_pics/head_deep_blue.png";
@@ -199,6 +199,28 @@
                 $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',test,')";
                 $db->query($query);
                 if($db){
+                    ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "You have successfully registered <br/>Click Here To <a href='login.php'>Login</a>"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php
                     echo "<div class ='form'>
                     <h3>You have successfully registered</h3>
                     <br/>Click Here To <a href='login.php'>Login</a>
