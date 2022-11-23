@@ -35,7 +35,7 @@
                 <div class="login-box">
                     <div class="login-header">
                         <h1>OnlyFriends</h1>
-                        <p>Login or sign up below!</p>
+                        <p>Login below!</p>
                     </div>
                     <div>
                         <form name="login" action="" method="POST">
@@ -56,7 +56,7 @@
                 <div class="login-box">
                     <div class="login-header">
                         <h1>OnlyFriends</h1>
-                        <p>Login or sign up below!</p>
+                        <p>Login below!</p>
                     </div>
                     <div>
                         <form name="login" action="" method="POST">

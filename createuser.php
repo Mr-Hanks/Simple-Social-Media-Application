@@ -39,42 +39,150 @@
             if($res->num_rows > 0){
                 $row = mysqli_fetch_assoc($res);
                 if($email==($row['email']) && $username==($row['username'])){
-                    echo "<div class ='form'>
-                    <h3>Email and Username are already in use</h3>
-                    <br/><a href='createuser.php'>Register With A New Email And Username</a>
-                    </div>"; 
+                  ?>  <div class="wrapper">
+                        <div class="login-box">
+                            <div class="login-header">
+                                <h1>Registration</h1>
+                                <p>Sign up below!</p>
+                            </div>
+                            <div>
+                                <form name="registration" action="" method="POST">
+                                <?php echo "Email And Username Are Already In Use, Try Again"; ?>
+                                    <input type="text" name="firstName" placeholder="First Name" required/>
+                                    <input type="text" name="lastName" placeholder="Last Name" required/>
+                                    <input type="text" name="email" placeholder="Email" required/>
+                                    <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                    <input type="text" name="username" placeholder="Username" required />
+                                    <input type="password" name="password" placeholder="Password" required />
+                                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                    <input type="submit" name="submit" value="Register"/>
+                                </form>
+                                <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                            </div>
+                        </div>
+                    </div> <?php
                 }
                 elseif($email==($row['email'])){
-                    echo "<div class ='form'>
-                    <h3>Email is already in use</h3>
-                    <br/><a href='createuser.php'>Register With A New Email</a>
-                    </div>";
+                    ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "Email Is Already In Use, Try Again"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php  
                 }
                 elseif($username==($row['username'])){
-                    echo "<div class ='form'>
-                    <h3>Username is already in use</h3>
-                    <br/><a href='createuser.php'>Register With A New Username</a>
-                    </div>";
+                    ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "Username Is Already In Use, Try Again"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php
+                    
                     }
             }
             elseif($email != $confirmEmail && $password != $confirmPassword){
-                echo "<div class ='form'>
-                    <h3>Emails And Passwords Both Don't Match</h3>
-                    <br/><a href='createuser.php'>Try Registering Again</a>
-                    </div>";
+                ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "Emails And Passwords Both Don't Match, Try Again"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php         
             }
             elseif($email != $confirmEmail){
-                echo "<div class ='form'>
-                    <h3>Emails Don't Match</h3>
-                    <br/><a href='createuser.php'>Try Registering Again</a>
-                    </div>";
+                ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "Emails Don't Match, Try Again"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php        
             }
             elseif($password != $confirmPassword){
-                echo "<div class ='form'>
-                    <h3>Passwords Don't Match</h3>
-                    <br/><a href='createuser.php'>Try Registering Again</a>
-                    </div>";
-
+                ?>  <div class="wrapper">
+                            <div class="login-box">
+                                <div class="login-header">
+                                    <h1>Registration</h1>
+                                    <p>Sign up below!</p>
+                                </div>
+                                <div>
+                                    <form name="registration" action="" method="POST">
+                                        <?php echo "Passwords Don't Match, Try Again"; ?> <br>
+                                        <input type="text" name="firstName" placeholder="First Name" required/>
+                                        <input type="text" name="lastName" placeholder="Last Name" required/>
+                                        <input type="text" name="email" placeholder="Email" required/>
+                                        <input type="text" name="confirmEmail" placeholder="Confirm Email" required/>
+                                        <input type="text" name="username" placeholder="Username" required />
+                                        <input type="password" name="password" placeholder="Password" required />
+                                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required/> <br>
+                                        <input type="submit" name="submit" value="Register"/>
+                                    </form>
+                                    <p>Have An Account? <a href='login.php'>Sign in Here!</a></p>
+                                </div>
+                            </div>
+                        </div> <?php
             }
             else{
                 $rand = rand(1, 2); //Random nr between 1 and 2
@@ -103,6 +211,7 @@
                 <div class="login-box">
                     <div class="login-header">
                         <h1>Registration</h1>
+                        <p>Sign up below!</p>
                     </div>
                     <div>
                         <form name="registration" action="" method="POST">
