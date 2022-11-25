@@ -24,7 +24,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- My CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     
 </head>
 
@@ -33,7 +33,7 @@ include("includes/classes/User.php"); //Call in the USER CLASS
 include("includes/classes/Post.php"); //Call in the Post CLASS
 
 
-//If user is logged in 
+//Authentication
 if (isset($_SESSION['username'])) {
     $userLoggedIn = $_SESSION['username'];
 
@@ -63,11 +63,11 @@ if (isset($_SESSION['username'])) {
             <a href="index.php">
                 <i class="fa-solid fa-house-chimney"></i>
             </a>
-            <!-- Open Messages Dropdown for the logged in user, type = message -->
+            
             <a href="#">
                 <i class="fa-solid fa-envelope"></i>
             </a>
-            <!-- Notifications dropdown -->
+            
             <a href="#">
                 <i class="fa-solid fa-bell"></i>              
             </a>

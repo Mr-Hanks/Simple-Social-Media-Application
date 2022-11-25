@@ -14,9 +14,9 @@ class Post
         $this->user_obj = new User($con, $user); //With each post, create a new instance of User class
     }
 
-    public function submitPost($body, $user_to)
+    public function submitPost($body)
     {
-        // $userLoggedIn = $this->user_obj->getUsername(); //Get logged in user 
+        
 
         $body = strip_tags($body); //Remove html tags
         $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings etc (db will not act on them)
@@ -232,19 +232,6 @@ class Post
 
             } //END WHILE LOOP
 
-            //If there are some posts still left after 10 have been loaded - for ajax 
-            if ($count > $limit) {
-                //Increase the "page" size with a hidden page number, so ajax would load the next posts
-                $html .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'> 
-                          <input type='hidden' class='noMorePosts' value='false'>"; //Hidden input to keep track of a value
-            } else {
-                if ($num_iterations == 0) {
-                    $html .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align:center;'>No posts to show!</p>"; //Hidden input to keep track 
-                } else {
-                    //If there are no more posts to show, let the user know
-                    $html .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align:center;'>No more posts to show!</p>"; //Hidden input to keep track of a value
-                }
-            }
         }
         //When the loop is done, echo the html
         echo $html;
@@ -426,19 +413,6 @@ class Post
 
             } //END WHILE LOOP
 
-            //If there is some posts still left after 10 have been loaded - for ajax 
-            if ($count > $limit) {
-                //Increase the "page" size with a hidden page number, so ajax would load the next posts
-                $html .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'> 
-                          <input type='hidden' class='noMorePosts' value='false'>"; //Hidden input to keep track of a value
-            } else {
-                if ($num_iterations == 0) {
-                    $html .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align:center;'>No posts to show!</p>"; //Hidden input to keep track 
-                } else {
-                    //If there are no more posts to show, let the user know
-                    $html .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align:center;'>No more posts to show!</p>"; //Hidden input to keep track of a value
-                }
-            }
         }
         //When the loop is done, echo the html
         echo $html;

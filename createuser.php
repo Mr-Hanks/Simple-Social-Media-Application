@@ -196,7 +196,7 @@
                 else if ($rand == 3) {
                     $profile_pic = "assets/images/profile_pics/head_red.png";
                 }
-                $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',test,')";
+                $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',Test,')";
                 $db->query($query);
                 if($db){
                     ?>  <div class="wrapper">
