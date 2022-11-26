@@ -67,16 +67,14 @@
                 <div class="like_value">
                     ' . $total_likes . ' Likes
                 </div>
-            </form>
-        ';
+            </form>';
     } else {
         echo '<form action="like.php?post_id=' . $post_id . '" method="POST">
                 <input type="submit" class="comment_like" name="like_button" value="Like">
                 <div class="like_value">
                     ' . $total_likes . ' Likes
                 </div>
-            </form>
-        ';
+            </form>';
     }
 
     ?>

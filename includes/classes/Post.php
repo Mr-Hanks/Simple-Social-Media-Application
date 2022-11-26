@@ -16,13 +16,7 @@ class Post
 
     public function submitPost($body)
     {
-        
-
-        $body = strip_tags($body); //Remove html tags
         $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings etc (db will not act on them)
-
-        $body = str_replace('\r\n', '\n', $body); //\r\n = Enter/linebreaks, we want to replace them with just \n //TO ALLOW USERS POST WITH LINEBREAKS
-        $body = nl2br($body); //Replace the php "newline" \n with html <br> !!
 
         $check_empty = preg_replace('/\s+/', '', $body); //Deletes all spaces from body
 
