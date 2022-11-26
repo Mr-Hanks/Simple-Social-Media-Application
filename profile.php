@@ -31,21 +31,11 @@ if (isset($_GET['profile_username'])) {
         <p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
         <p><?php echo "Friends: " . $num_friends; ?></p>
     </div>
-
-    
-
     <input type="submit" class="deep_purple" data-toggle="modal" data-target="#post_form" value="Post Something">
-
-    
-
 </div>
 
 <div class="profile_main_column column">
 
-    <!-- TABS -->
-    
-
-    <!-- TABS CONTENT -->
     <div>
         <div>
             <div class="posts_area">
