@@ -74,8 +74,7 @@ if (isset($_GET['profile_username'])) {
                 <form class="profile_post" action="" method="POST">
                     <div class="form-group">
                         <textarea class="form-control" name="post_body"></textarea>
-                        <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">
-                        
+                        <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">    
                     </div>
                 </form>
             </div>
@@ -86,6 +85,26 @@ if (isset($_GET['profile_username'])) {
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+    //Button for profile post
+    $('#submit_profile_post').click(function() {
+        $.ajax({
+            type: "POST",
+            url: "includes/handlers/ajax_submit_profile_post.php",
+            data: $('form.profile_post').serialize(),
+            success: function(msg) {
+                $('#post_form').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                alert("Failed to post!");
+            }
+        });
+    });
+});
+
+</script>
 
 <script>
     $(function() {
