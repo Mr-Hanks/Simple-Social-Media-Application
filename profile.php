@@ -31,11 +31,16 @@ if (isset($_GET['profile_username'])) {
         <p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
         <p><?php echo "Friends: " . $num_friends; ?></p>
     </div>
+
+    
+
     <input type="submit" class="deep_purple" data-toggle="modal" data-target="#post_form" value="Post Something">
+
+    
+
 </div>
 
 <div class="profile_main_column column">
-
     <div>
         <div>
             <div class="posts_area">
@@ -64,7 +69,8 @@ if (isset($_GET['profile_username'])) {
                 <form class="profile_post" action="" method="POST">
                     <div class="form-group">
                         <textarea class="form-control" name="post_body"></textarea>
-                        <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">    
+                        <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">
+                        
                     </div>
                 </form>
             </div>
@@ -124,7 +130,7 @@ if (isset($_GET['profile_username'])) {
             inProgress = true;
             $('#loading').show();
 
-            var page = $('.posts_area').find('.nextPage').val() || 1; //If .nextPage couldn't be found, it must not be on the page yet (it must be the first time loading posts), so use the value '1'
+            var page = $('.posts_area'); 
 
             $.ajax({
                 url: "includes/handlers/ajax_load_profile_posts.php",
@@ -133,10 +139,6 @@ if (isset($_GET['profile_username'])) {
                 cache: false,
 
                 success: function(response) {
-                    $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
-                    $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
-                    $('.posts_area').find('.noMorePostsText').remove(); //Removes current .nextpage 
-
                     $('#loading').hide();
                     $(".posts_area").append(response);
 

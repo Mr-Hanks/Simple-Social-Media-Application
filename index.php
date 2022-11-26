@@ -21,6 +21,7 @@ if (isset($_POST['post'])) {
 ?>
 <!-- USER DETAILS -->
 <div class="user_details column">
+    <!-- comes from header page, rewrite in .htaccess -->
     <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">
         <img src="<?php echo $user['profile_pic']; ?>" alt="Profile picture">
     </a>
@@ -47,11 +48,6 @@ if (isset($_POST['post'])) {
         <input type="submit" name="post" id="post_button" value="Post">
         <hr>
     </form>
-
-    <?php
-    /* $post = new Post($con, $userLoggedIn); //Create a new post instance of this class, pass the user who created it
-        $post->loadPostsFriends(); */
-    ?>
 
     <div class="posts_area">
         <!-- Posts are going to be loaded via ajax, 10 at a time -->
@@ -87,7 +83,7 @@ if (isset($_POST['post'])) {
             inProgress = true;
             $('#loading').show();
 
-            var page = $('.posts_area').find('.nextPage').val() || 1; //If .nextPage couldn't be found, it must not be on the page yet (it must be the first time loading posts), so use the value '1'
+            var page = $('.posts_area'); 
 
             $.ajax({
                 url: "includes/handlers/ajax_load_posts.php",
@@ -96,10 +92,6 @@ if (isset($_POST['post'])) {
                 cache: false,
 
                 success: function(response) {
-                    $('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
-                    $('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
-                    $('.posts_area').find('.noMorePostsText').remove(); //Removes current .nextpage 
-
                     $('#loading').hide();
                     $(".posts_area").append(response);
 

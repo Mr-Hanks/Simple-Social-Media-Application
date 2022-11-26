@@ -16,6 +16,7 @@ class Post
 
     public function submitPost($body)
     {
+        
         $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings etc (db will not act on them)
 
         $check_empty = preg_replace('/\s+/', '', $body); //Deletes all spaces from body
@@ -48,22 +49,15 @@ class Post
 
     public function loadPostsFriends($data, $limit) {
 
-        $page = $data['page'];
+        
         $userLoggedIn = $this->user_obj->getUsername();
-
-        if ($page == 1) {
-            $start = 0;
-        } else {
-            $start = ($page - 1) * $limit;
-        }
 
         $html = ""; //HTml to return in the end
         $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC"); //Latest first
 
         if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent back from db
 
-            $num_iterations = 0; //Number of results checked (not necessarily posted)
-            $count = 1;
+    
 
             while ($row = mysqli_fetch_array($data_query)) {
                 $id = $row['id'];
@@ -77,16 +71,6 @@ class Post
 
                 if ($user_logged_obj->isFriend($added_by)) {
 
-                    if ($num_iterations++ < $start) {
-                        continue;
-                    }
-
-                    //Once 20 posts have been loaded, break
-                    if ($count > $limit) {
-                        break;
-                    } else {
-                        $count++;
-                    }
 
                     // Delete post button
                     if ($userLoggedIn == $added_by)
@@ -225,7 +209,7 @@ class Post
             <?php
 
             } //END WHILE LOOP
-
+        
         }
         //When the loop is done, echo the html
         echo $html;
@@ -233,24 +217,16 @@ class Post
 
     public function loadProfilePosts($data, $limit) {
 
-        $page = $data['page'];
+        
         $profileUser = $data['profileUsername'];
 
         $userLoggedIn = $this->user_obj->getUsername();
-
-        if ($page == 1) {
-            $start = 0;
-        } else {
-            $start = ($page - 1) * $limit;
-        }
 
         $html = ""; //HTml to return in the end
         $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND (added_by='$profileUser') ORDER BY id DESC"); //Latest first
 
         if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent back from db
 
-            $num_iterations = 0; //Number of results checked (not necessarily posted)
-            $count = 1;
 
             while ($row = mysqli_fetch_array($data_query)) {
                 $id = $row['id'];
@@ -258,16 +234,6 @@ class Post
                 $added_by = $row['added_by'];
                 $date_time = $row['date_added'];
 
-                if ($num_iterations++ < $start) {
-                    continue;
-                }
-
-                //Once 10 posts have been loaded, break
-                if ($count > $limit) {
-                    break;
-                } else {
-                    $count++;
-                }
 
                 // Delete post button
                 if ($userLoggedIn == $added_by)
@@ -406,7 +372,7 @@ class Post
                 <?php
 
             } //END WHILE LOOP
-
+            
         }
         //When the loop is done, echo the html
         echo $html;
