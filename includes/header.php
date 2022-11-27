@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
 
     <div class="top_bar">
         <div class="logo">
-            <a href="index.php">OnlyFriends</a> <!-- header title -->
+            <a href="index.php">OnlyFriends</a> 
         </div>
         <nav>
             <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">

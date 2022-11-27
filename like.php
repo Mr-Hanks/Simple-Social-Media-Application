@@ -1,7 +1,7 @@
  <?php
 
     require 'config/config.php'; //getting the $connection variable
-    include("includes/classes/User.php"); //Inlcudes the USER CLASS
+    include("includes/classes/User.php"); //Includes the USER CLASS
     include("includes/classes/Post.php"); //Includes the Post CLASS
 
 
@@ -49,10 +49,10 @@
     //Unlike button
     if (isset($_POST['unlike_button'])) {
 
-        $total_likes--; //Increase the like count on the post and update the value in db
+        $total_likes--; //Decrease the like count on the post and update the value in db
         $query = mysqli_query($con, "UPDATE posts SET likes='$total_likes' WHERE id='$post_id'");
 
-        $total_user_likes--; //Increase the like count on user total likes
+        $total_user_likes--; //Decrease the like count on user total likes
         $user_likes = mysqli_query($con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
         $insert_user = mysqli_query($con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
     }

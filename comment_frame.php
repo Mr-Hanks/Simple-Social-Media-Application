@@ -1,6 +1,6 @@
 <?php
 
-    require 'config/config.php'; //getting $con var
+    require 'config/config.php'; //getting $connection variable
     include("includes/classes/User.php"); //Includes the USER CLASS
     include("includes/classes/Post.php"); //Includes the Post CLASS
 

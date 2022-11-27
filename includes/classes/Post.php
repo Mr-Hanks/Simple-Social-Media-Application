@@ -7,18 +7,16 @@ class Post
     private $con;
 
     //Constructor - creates the user object 
-    public function __construct($con, $user)
-    {
+    public function __construct($con, $user){
+
         //this is referencing the class object
         $this->con = $con;
         $this->user_obj = new User($con, $user); //Each post will create a new instance of the User class
     }
 
-    public function submitPost($body)
-    {
+    public function submitPost($body){
         
         $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings
-
         $check_empty = preg_replace('/\s+/', '', $body); //Deletes all empty spaces from the body
 
         //Not allowing the user to enter empty spaces into the db
@@ -39,19 +37,16 @@ class Post
             //Update the post count for the user
             $num_posts = $this->user_obj->getNumPosts(); //Return the number of posts
             $num_posts++; //Increment the post count
-            $update_query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$added_by'"); //Update user 
-
-            
+            $update_query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$added_by'"); //Update user post count in db 
+           
         }
     }
 
     
 
     public function loadPostsFriends($data, $limit) {
-
         
         $userLoggedIn = $this->user_obj->getUsername();
-
         $html = ""; //HTml to return 
         $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC"); //Latest post first
 
@@ -356,7 +351,7 @@ class Post
                     
                     $(document).ready(function() {
                         $('#post<?php echo $id; ?>').on('click', function() {
-                            // Comes with bootstrap JS
+                            // Comes with Bootbox JS
                             bootbox.confirm("Are you sure you want to delete this post?", function(result) {
                                 $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {
                                     result: result
