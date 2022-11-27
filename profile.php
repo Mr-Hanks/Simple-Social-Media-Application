@@ -1,11 +1,10 @@
 <?php
-include("includes/header.php"); //Also includes classes like User and Post
+//Including the header.php with association to User and Post classes
+include("includes/header.php"); 
  
-// session_destroy();
 
 
-// Profile actual url (we hid it with htaccess) /fb/profile.php?profile_username=rix_rix
-
+//Getting the user that is logged in, along with their friends
 if (isset($_GET['profile_username'])) {
     $username = $_GET['profile_username'];
 
@@ -22,7 +21,7 @@ if (isset($_GET['profile_username'])) {
     }
 </style>
 
-<!-- PROFILE BOX -->
+<!-- User Details -->
 <div class="profile_left">
     <img src="<?php echo $user_array['profile_pic']; ?>" alt="profile_pic">
 
@@ -44,7 +43,7 @@ if (isset($_GET['profile_username'])) {
     <div>
         <div>
             <div class="posts_area">
-                <!-- Posts are going to be loaded via ajax, 10 at a time -->
+                <!-- Posts are going to be loaded using ajax -->
             </div>
             <img id="loading" src="assets/images/icons/loading.gif" alt="Loading">
         </div>
@@ -54,7 +53,7 @@ if (isset($_GET['profile_username'])) {
 
 </div>
 
-<!-- Modal -->
+<!-- Modal popup for handling the post something button -->
 <div class="modal fade" id="post_form">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -83,7 +82,7 @@ if (isset($_GET['profile_username'])) {
 </div>
 <script>
     $(document).ready(function() {
-    //Button for profile post
+    //Button for profile post something
     $('#submit_profile_post').click(function() {
         $.ajax({
             type: "POST",
@@ -105,40 +104,40 @@ if (isset($_GET['profile_username'])) {
 <script>
     $(function() {
 
-        var userLoggedIn = '<?php echo $userLoggedIn; ?>'; //Save the session variable to js value, to be used with ajax $_REQUEST later
+        var userLoggedIn = '<?php echo $userLoggedIn; ?>'; //The session variable is being stored in javascript value, to be used with ajax $_REQUEST later
         var profileUsername = '<?php echo $username; ?>';
 
         var inProgress = false;
 
-        loadPosts(); //Load first posts
+        loadPosts(); //Load posts
 
         $(window).scroll(function() {
             var bottomElement = $(".status_post").last();
             var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-            // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
+            // isElementInViewport uses getBoundingClientRect()
             if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
                 loadPosts();
             }
         });
 
         function loadPosts() {
-            if (inProgress) { //If it is already in the process of loading some posts, just return
+            if (inProgress) { //In the case of loading some posts, just return
                 return;
             }
 
-            inProgress = true;
+            inProgress = true; //Shows the loading wheel if set to true
             $('#loading').show();
 
             var page = $('.posts_area'); 
 
-            $.ajax({
+            $.ajax({ //ajax loads the posts for that specific user on their profile page
                 url: "includes/handlers/ajax_load_profile_posts.php",
                 type: "POST",
                 data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
                 cache: false,
 
-                success: function(response) {
+                success: function(response) { //if load post is successful, hide the loading wheel animation and append the post to the postarea
                     $('#loading').hide();
                     $(".posts_area").append(response);
 
@@ -147,7 +146,7 @@ if (isset($_GET['profile_username'])) {
             });
         }
 
-        //Check if the element is in view
+        //Check if the element or post is in view
         function isElementInView(el) {
             var rect = el.getBoundingClientRect();
 

@@ -1,11 +1,11 @@
  <?php
 
-    require 'config/config.php'; //getting $con var
-    include("includes/classes/User.php"); //Call in the USER CLASS
-    include("includes/classes/Post.php"); //Call in the Post CLASS
+    require 'config/config.php'; //getting the $connection variable
+    include("includes/classes/User.php"); //Inlcudes the USER CLASS
+    include("includes/classes/Post.php"); //Includes the Post CLASS
 
 
-    //If user is logged in 
+    //Authentication
     if (isset($_SESSION['username'])) {
         $userLoggedIn = $_SESSION['username'];
 
@@ -15,10 +15,10 @@
         $user = mysqli_fetch_array($user_details_query); //return array from db
 
     } else {
-        header("Location: register.php"); //If not logged in, redirect to register
+        header("Location: register.php"); //If the user is not logged in, redirect to the register page
     }
 
-    //Get id of post that the use wants to like/liked 
+    //Get id of the post that the user likes or has liked 
     if (isset($_GET['post_id'])) {
         $post_id = $_GET['post_id'];
     }
@@ -26,8 +26,8 @@
     $get_likes = mysqli_query($con, "SELECT likes, added_by FROM posts WHERE id='$post_id'");
     $row = mysqli_fetch_array($get_likes);
 
-    $total_likes = $row['likes']; //Number of likes
-    $user_liked = $row['added_by']; //User who liked post
+    $total_likes = $row['likes']; //# of likes
+    $user_liked = $row['added_by']; //Checks the actual user who liked the post
 
     $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$user_liked'"); //info of user who liked
     $row = mysqli_fetch_array($user_details_query);
@@ -57,7 +57,7 @@
         $insert_user = mysqli_query($con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
     }
 
-    //Check for previous likes
+    //Checks for any previous likes
     $check_query = mysqli_query($con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
     $num_rows = mysqli_num_rows($check_query);
 

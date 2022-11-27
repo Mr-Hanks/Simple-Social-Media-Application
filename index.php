@@ -1,5 +1,5 @@
 <?php
-include("includes/header.php"); //Header file with the db connection etc, also includes Classes like User and Post
+include("includes/header.php"); //Including the header.php with association to User and Post classes
 
 
 if (isset($_POST['post'])) {
@@ -8,11 +8,11 @@ if (isset($_POST['post'])) {
     
 
     if ($uploadOk) {
-        $post = new Post($con, $userLoggedIn); //Create a new post instance of this class, pass the user who created it
+        $post = new Post($con, $userLoggedIn); //Creates a new post instance of the Post class and passes the user who created the post
 
-        $post->submitPost($_POST['post_text']); //Submit the post via submit method in the Post.php class file
+        $post->submitPost($_POST['post_text']); //Submit the post from the method in the Post.php file
 
-        header("location: index.php"); //Removes the resubmission of form when refreshing the page!
+        header("location: index.php"); //No need to resubmit the form when refreshing the page
     }
 
     
@@ -21,7 +21,7 @@ if (isset($_POST['post'])) {
 ?>
 <!-- USER DETAILS -->
 <div class="user_details column">
-    <!-- comes from header page, rewrite in .htaccess -->
+    <!-- comes from header page and rewrites the url to display the user that is logged in -->
     <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">
         <img src="<?php echo $user['profile_pic']; ?>" alt="Profile picture">
     </a>
@@ -50,48 +50,48 @@ if (isset($_POST['post'])) {
     </form>
 
     <div class="posts_area">
-        <!-- Posts are going to be loaded via ajax, 10 at a time -->
+        <!-- Posts are going to be loaded via ajax -->
     </div>
     <img id="loading" src="assets/images/icons/loading.gif" alt="Loading">
 </div>
 
 
-<!-- INFINITE SCROLLING -->
+<!-- Provides infinite scrolling for multiple posts -->
 <script>
     $(function() {
 
-        var userLoggedIn = '<?php echo $userLoggedIn; ?>'; //Save the session variable to js value, to be used with ajax $_REQUEST later
+        var userLoggedIn = '<?php echo $userLoggedIn; ?>'; //The session variable is being stored in javascript value, to be used with ajax $_REQUEST later
         var inProgress = false;
 
-        loadPosts(); //Load first posts
+        loadPosts(); //Load posts
 
         $(window).scroll(function() {
             var bottomElement = $(".status_post").last();
             var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-            // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
+            // isElementInViewport uses getBoundingClientRect()
             if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
                 loadPosts();
             }
         });
 
         function loadPosts() {
-            if (inProgress) { //If it is already in the process of loading some posts, just return
+            if (inProgress) { //In the case of loading some posts, just return
                 return;
             }
 
-            inProgress = true;
+            inProgress = true; //Shows the loading wheel if set to true
             $('#loading').show();
 
             var page = $('.posts_area'); 
 
             $.ajax({
-                url: "includes/handlers/ajax_load_posts.php",
+                url: "includes/handlers/ajax_load_posts.php", //ajax loads the posts for that specific user on the main page
                 type: "POST",
                 data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
                 cache: false,
 
-                success: function(response) {
+                success: function(response) { //if load post is successful, hide the loading wheel animation and append the post to the postarea
                     $('#loading').hide();
                     $(".posts_area").append(response);
 
@@ -107,8 +107,8 @@ if (isset($_POST['post'])) {
             return (
                 rect.top >= 0 &&
                 rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && 
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth) 
             );
         }
     });

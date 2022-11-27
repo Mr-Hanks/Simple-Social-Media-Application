@@ -1,8 +1,8 @@
 <?php 
 
-require '../../config/config.php'; //getting $con var
-include("../classes/User.php"); //Call in the USER CLASS
-include("../classes/Post.php"); //Call in the Post CLASS
+require '../../config/config.php'; //Includes the database $connection variable
+include("../classes/User.php"); //Includes the USER CLASS
+include("../classes/Post.php"); //Includes the Post CLASS
 
 if (isset($_POST['post_body'])) {
     $post = new Post($con, $_POST['user_from']);

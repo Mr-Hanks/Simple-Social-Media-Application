@@ -15,7 +15,7 @@
     
     
 
-    <!-- CSS -->
+    <!-- CSS styling -->
 
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/6a95d184e3.js" crossorigin="anonymous"></script>
@@ -26,9 +26,9 @@
     
 </head>
 
-<?php require 'config/config.php'; //getting $con var
-include("includes/classes/User.php"); //Call in the USER CLASS
-include("includes/classes/Post.php"); //Call in the Post CLASS
+<?php require 'config/config.php'; //Includes the database $connection variable
+include("includes/classes/User.php"); //Includes the USER CLASS
+include("includes/classes/Post.php"); //Includes the Post CLASS
 
 
 //Authentication
@@ -38,10 +38,10 @@ if (isset($_SESSION['username'])) {
     //Get user details from db
     $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
 
-    $user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+    $user = mysqli_fetch_array($user_details_query); //returns info about the logged in user
 
 } else {
-    header("Location: login.php"); //If not logged in, redirect to register
+    header("Location: login.php"); //If user is not logged in, redirect to them to the register page
 }
 
 ?>
@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
 
     <div class="top_bar">
         <div class="logo">
-            <a href="index.php">OnlyFriends</a>
+            <a href="index.php">OnlyFriends</a> <!-- header title -->
         </div>
         <nav>
             <a href="<?php echo "profile.php?profile_username=$userLoggedIn"; ?>">

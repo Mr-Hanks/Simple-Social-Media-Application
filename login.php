@@ -17,7 +17,7 @@
             $password = $_POST['password'];
         }
 
-        if (isset($_POST['email']) && isset($_POST['password'])){
+        if (isset($_POST['email']) && isset($_POST['password'])){ 
             $db = new mysqli("localhost", "root", "", "social");
             $input = "SELECT * FROM users WHERE email='$email' and password='".md5($password)."'";
             $result= $db->query($input);
@@ -27,7 +27,7 @@
             if($rows==1){
                 $row = mysqli_fetch_assoc($result);
                 $user_name = $row['username'];
-                $_SESSION['username']=$user_name;
+                $_SESSION['username']=$user_name; 
 
                 header("Location: index.php");
             }else{
@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         <form name="login" action="" method="POST">
-                        <?php echo "Email/Password is incorrect"; ?>
+                        <?php echo "Email/Password is incorrect"; ?> <!-- notifying the user that the username and/or password is incorrect -->
                             <input type="email" name="email" placeholder="Email Address" required />
                             <input type="password" name="password" placeholder="Password" required /> <br>
                             <input type="submit" name="submit" value="Login" />

@@ -1,45 +1,45 @@
 <?php
-//Objecto oriented PHP - User class
+//User class
 class Post
 {
-    //Will only be able to use these variables inside this class
+    
     private $user_obj;
     private $con;
 
-    //Constructor (like in react) - creates the user object upon call = $new_obj = new User($con, $userLoggedIn) ...
+    //Constructor - creates the user object 
     public function __construct($con, $user)
     {
-        //"THIS" REFERENCES THE CLASS OBJECT
+        //this is referencing the class object
         $this->con = $con;
-        $this->user_obj = new User($con, $user); //With each post, create a new instance of User class
+        $this->user_obj = new User($con, $user); //Each post will create a new instance of the User class
     }
 
     public function submitPost($body)
     {
         
-        $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings etc (db will not act on them)
+        $body = mysqli_real_escape_string($this->con, $body); //Allow single quotes in strings
 
-        $check_empty = preg_replace('/\s+/', '', $body); //Deletes all spaces from body
+        $check_empty = preg_replace('/\s+/', '', $body); //Deletes all empty spaces from the body
 
-        //Does not let the user enter just spaces into the db
+        //Not allowing the user to enter empty spaces into the db
         if ($check_empty != "") {
 
             //Current date & time
             $date_added = date("Y-m-d H:i:s");
             //Get username
-            $added_by = $this->user_obj->getUsername(); //Get the getusername method
+            $added_by = $this->user_obj->getUsername(); //getusername method
        
 
-            //Insert post to db
+            //Inserts post to the database
             $query = mysqli_query($this->con, "INSERT INTO posts VALUES ('', '$body', '$added_by', '$date_added', 'no', '0')");
 
-            $returned_id = mysqli_insert_id($this->con); //Returns the id of the post submitted
+            $returned_id = mysqli_insert_id($this->con); //Returns id of the post that was submitted
             
 
-            //Update post count for user
+            //Update the post count for the user
             $num_posts = $this->user_obj->getNumPosts(); //Return the number of posts
-            $num_posts++; //Increment the post count for the user
-            $update_query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$added_by'"); //Update the user 
+            $num_posts++; //Increment the post count
+            $update_query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$added_by'"); //Update user 
 
             
         }
@@ -52,10 +52,10 @@ class Post
         
         $userLoggedIn = $this->user_obj->getUsername();
 
-        $html = ""; //HTml to return in the end
-        $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC"); //Latest first
+        $html = ""; //HTml to return 
+        $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC"); //Latest post first
 
-        if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent back from db
+        if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent from the database
 
     
 
@@ -66,13 +66,13 @@ class Post
                 $date_time = $row['date_added'];
 
                 
-                //To show only friends posts on feed!!
+                //showing only friend posts on feed
                 $user_logged_obj = new User($this->con, $userLoggedIn);
 
                 if ($user_logged_obj->isFriend($added_by)) {
 
 
-                    // Delete post button
+                    // Delete post button functionality
                     if ($userLoggedIn == $added_by)
                         $delete_button = "<button class='delete_button' id='post$id'>X</button>";
                     else
@@ -86,7 +86,7 @@ class Post
                     $profile_pic = $user_row['profile_pic'];
 
                     ?>
-                    <!-- COMMENTS BLOCK TOGGLE FUNCTION -->
+                    <!-- COMMENTS BLOCK FUNCTION -->
                     <script>
                         function toggle<?php echo $id; ?>(event) {
 
@@ -105,11 +105,11 @@ class Post
                     </script>
                 <?php
 
-                    //Get the comment number count
+                    //comment count
                     $comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
                     $comments_check_num = mysqli_num_rows($comments_check);
 
-                    //Timeframe
+                    //Timestamps
                     $date_time_now = date("Y-m-d H:i:s");
                     $start_date = new DateTime($date_time); //Time of post
                     $end_date = new DateTime($date_time_now); //Current time
@@ -117,23 +117,23 @@ class Post
 
                     if ($interval->y >= 1) {
                         if ($interval->y == 1) {
-                            $time_message = $interval->y . " year ago"; //1 year ago
+                            $time_message = $interval->y . " year ago"; // exactly 1 year ago
                         } else {
-                            $time_message = $interval->y . " years ago"; //.. years ago
+                            $time_message = $interval->y . " years ago"; // several years ago
                         }
                     } else if ($interval->m >= 1) {
                         if ($interval->d == 0) {
                             $days = " ago";
                         } else if ($interval->d == 1) {
-                            $days = $interval->d . " day ago";
+                            $days = $interval->d . " day ago"; //exactly 1 day ago
                         } else {
-                            $days = $interval->d . " days ago";
+                            $days = $interval->d . " days ago"; //several days ago
                         }
 
                         if ($interval->m == 1) {
-                            $time_message = $interval->m . " month " . $days;
+                            $time_message = $interval->m . " month " . $days; //exactly 1 month ago
                         } else {
-                            $time_message = $interval->m . " months " . $days;
+                            $time_message = $interval->m . " months " . $days; //several months ago
                         }
                     } else if ($interval->d >= 1) {
                         if ($interval->d == 1) {
@@ -143,25 +143,25 @@ class Post
                         }
                     } else if ($interval->h >= 1) {
                         if ($interval->h == 1) {
-                            $time_message = $interval->h . " hour ago";
+                            $time_message = $interval->h . " hour ago"; //exactly 1 hour ago
                         } else {
-                            $time_message = $interval->h . " hours ago";
+                            $time_message = $interval->h . " hours ago"; //several hours ago
                         }
                     } else if ($interval->i >= 1) {
                         if ($interval->i == 1) {
-                            $time_message = $interval->i . " minute ago";
+                            $time_message = $interval->i . " minute ago"; //exactly 1 minute ago
                         } else {
-                            $time_message = $interval->i . " minutes ago";
+                            $time_message = $interval->i . " minutes ago"; //several minutes ago
                         }
                     } else {
                         if ($interval->s < 30) {
-                            $time_message = "Just now";
+                            $time_message = "Just now"; // 0 - 30 seconds
                         } else {
-                            $time_message = $interval->s . " seconds ago";
+                            $time_message = $interval->s . " seconds ago"; //anything over 30 seconds
                         }
                     }
 
-                    //With each iteration, add a post to the html
+                    //Add a post to the html
                     $html .= "<div class='status_post' onClick='javascript:toggle$id(event)'>
                                 <div class='post_profile_pic'>
                                     <img src='$profile_pic' width='50'>
@@ -211,7 +211,7 @@ class Post
             } //END WHILE LOOP
         
         }
-        //When the loop is done, echo the html
+        //When the loop is finished , echo the html
         echo $html;
     }
 
@@ -222,10 +222,10 @@ class Post
 
         $userLoggedIn = $this->user_obj->getUsername();
 
-        $html = ""; //HTml to return in the end
-        $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND (added_by='$profileUser') ORDER BY id DESC"); //Latest first
+        $html = ""; //HTML to return
+        $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND (added_by='$profileUser') ORDER BY id DESC"); //Latest post first
 
-        if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent back from db
+        if (mysqli_num_rows($data_query) > 0) { //If at least one row is sent from the database
 
 
             while ($row = mysqli_fetch_array($data_query)) {
@@ -235,7 +235,7 @@ class Post
                 $date_time = $row['date_added'];
 
 
-                // Delete post button
+                // Delete post button functionality
                 if ($userLoggedIn == $added_by)
                     $delete_button = "<button class='delete_button' id='post$id'>X</button>";
                 else
@@ -249,7 +249,7 @@ class Post
                 $profile_pic = $user_row['profile_pic'];
 
             ?>
-                <!-- COMMENTS BLOCK TOGGLE FUNCTION -->
+                <!-- COMMENTS BLOCK FUNCTION -->
                 <script>
                     function toggle<?php echo $id; ?>(event) {
 
@@ -268,11 +268,11 @@ class Post
                 </script>
                 <?php
 
-                //Get the comment number count
+                //comment count
                 $comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
                 $comments_check_num = mysqli_num_rows($comments_check);
 
-                //Timeframe
+                //Timestamps
                 $date_time_now = date("Y-m-d H:i:s");
                 $start_date = new DateTime($date_time); //Time of post
                 $end_date = new DateTime($date_time_now); //Current time
@@ -282,21 +282,21 @@ class Post
                     if ($interval->y == 1) {
                         $time_message = $interval->y . " year ago"; //1 year ago
                     } else {
-                        $time_message = $interval->y . " years ago"; //.. years ago
+                        $time_message = $interval->y . " years ago"; // several years ago
                     }
                 } else if ($interval->m >= 1) {
                     if ($interval->d == 0) {
                         $days = " ago";
                     } else if ($interval->d == 1) {
-                        $days = $interval->d . " day ago";
+                        $days = $interval->d . " day ago"; //exactly 1 day ago
                     } else {
-                        $days = $interval->d . " days ago";
+                        $days = $interval->d . " days ago"; //several days ago
                     }
 
                     if ($interval->m == 1) {
-                        $time_message = $interval->m . " month " . $days;
+                        $time_message = $interval->m . " month " . $days; //exactly 1 month ago
                     } else {
-                        $time_message = $interval->m . " months " . $days;
+                        $time_message = $interval->m . " months " . $days; //several months ago
                     }
                 } else if ($interval->d >= 1) {
                     if ($interval->d == 1) {
@@ -306,25 +306,25 @@ class Post
                     }
                 } else if ($interval->h >= 1) {
                     if ($interval->h == 1) {
-                        $time_message = $interval->h . " hour ago";
+                        $time_message = $interval->h . " hour ago"; //exactly 1 hour ago
                     } else {
-                        $time_message = $interval->h . " hours ago";
+                        $time_message = $interval->h . " hours ago"; //several hours ago
                     }
                 } else if ($interval->i >= 1) {
                     if ($interval->i == 1) {
-                        $time_message = $interval->i . " minute ago";
+                        $time_message = $interval->i . " minute ago"; //exactly 1 minute ago
                     } else {
-                        $time_message = $interval->i . " minutes ago";
+                        $time_message = $interval->i . " minutes ago"; //several minutes ago
                     }
                 } else {
                     if ($interval->s < 30) {
-                        $time_message = "Just now";
+                        $time_message = "Just now"; // 0 - 30 seconds
                     } else {
-                        $time_message = $interval->s . " seconds ago";
+                        $time_message = $interval->s . " seconds ago"; // anything over 30 seconds
                     }
                 }
 
-                //With each iteration, add a post to the html
+                //Add a post to the html
                 $html .= "<div class='status_post' onClick='javascript:toggle$id(event)'>
                                 <div class='post_profile_pic'>
                                     <img src='$profile_pic' width='50'>
@@ -362,8 +362,8 @@ class Post
                                     result: result
                                 });
 
-                                if (result) { //if result is true/exists
-                                    location.reload()
+                                if (result) { //if result is true
+                                    location.reload() // reloads the page
                                 }
                             });
                         });
@@ -374,7 +374,7 @@ class Post
             } //END WHILE LOOP
             
         }
-        //When the loop is done, echo the html
+        //When the loop is finished, echo the html
         echo $html;
     }
 

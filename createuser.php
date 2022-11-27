@@ -38,7 +38,7 @@
 
             if($res->num_rows > 0){
                 $row = mysqli_fetch_assoc($res);
-                if($email==($row['email']) && $username==($row['username'])){
+                if($email==($row['email']) && $username==($row['username'])){ //check for similar emails AND usernames
                   ?>  <div class="wrapper">
                         <div class="login-box">
                             <div class="login-header">
@@ -47,7 +47,7 @@
                             </div>
                             <div>
                                 <form name="registration" action="" method="POST">
-                                <?php echo "Email And Username Are Already In Use, Try Again"; ?>
+                                <?php echo "Email And Username Are Already In Use, Try Again"; ?> <!-- notifiying the user that their email and username are both already in use -->
                                     <input type="text" name="firstName" placeholder="First Name" required/>
                                     <input type="text" name="lastName" placeholder="Last Name" required/>
                                     <input type="text" name="email" placeholder="Email" required/>
@@ -62,7 +62,7 @@
                         </div>
                     </div> <?php
                 }
-                elseif($email==($row['email'])){
+                elseif($email==($row['email'])){ //check for similar emails
                     ?>  <div class="wrapper">
                             <div class="login-box">
                                 <div class="login-header">
@@ -71,7 +71,7 @@
                                 </div>
                                 <div>
                                     <form name="registration" action="" method="POST">
-                                        <?php echo "Email Is Already In Use, Try Again"; ?> <br>
+                                        <?php echo "Email Is Already In Use, Try Again"; ?> <br> <!-- notifiying the user that their email is already in use -->
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
                                         <input type="text" name="email" placeholder="Email" required/>
@@ -86,7 +86,7 @@
                             </div>
                         </div> <?php  
                 }
-                elseif($username==($row['username'])){
+                elseif($username==($row['username'])){ //check for similar usernames
                     ?>  <div class="wrapper">
                             <div class="login-box">
                                 <div class="login-header">
@@ -95,7 +95,7 @@
                                 </div>
                                 <div>
                                     <form name="registration" action="" method="POST">
-                                        <?php echo "Username Is Already In Use, Try Again"; ?> <br>
+                                        <?php echo "Username Is Already In Use, Try Again"; ?> <br> <!-- notifiying the user that the username chosen is already in use -->
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
                                         <input type="text" name="email" placeholder="Email" required/>
@@ -112,7 +112,7 @@
                     
                     }
             }
-            elseif($email != $confirmEmail && $password != $confirmPassword){
+            elseif($email != $confirmEmail && $password != $confirmPassword){ //check if emails and passwords are different 
                 ?>  <div class="wrapper">
                             <div class="login-box">
                                 <div class="login-header">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div>
                                     <form name="registration" action="" method="POST">
-                                        <?php echo "Emails And Passwords Both Don't Match, Try Again"; ?> <br>
+                                        <?php echo "Emails And Passwords Both Don't Match, Try Again"; ?> <br> <!-- notifying the user that BOTH email and password do not match -->
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
                                         <input type="text" name="email" placeholder="Email" required/>
@@ -136,7 +136,7 @@
                             </div>
                         </div> <?php         
             }
-            elseif($email != $confirmEmail){
+            elseif($email != $confirmEmail){ //check for different emails
                 ?>  <div class="wrapper">
                             <div class="login-box">
                                 <div class="login-header">
@@ -145,7 +145,7 @@
                                 </div>
                                 <div>
                                     <form name="registration" action="" method="POST">
-                                        <?php echo "Emails Don't Match, Try Again"; ?> <br>
+                                        <?php echo "Emails Don't Match, Try Again"; ?> <br> <!-- notifying the user if their emails do not match in the form -->
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
                                         <input type="text" name="email" placeholder="Email" required/>
@@ -160,7 +160,7 @@
                             </div>
                         </div> <?php        
             }
-            elseif($password != $confirmPassword){
+            elseif($password != $confirmPassword){ //check for different passwords
                 ?>  <div class="wrapper">
                             <div class="login-box">
                                 <div class="login-header">
@@ -169,7 +169,7 @@
                                 </div>
                                 <div>
                                     <form name="registration" action="" method="POST">
-                                        <?php echo "Passwords Don't Match, Try Again"; ?> <br>
+                                        <?php echo "Passwords Don't Match, Try Again"; ?> <br> <!-- notifying the user that their passwords do not match in the form -->
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
                                         <input type="text" name="email" placeholder="Email" required/>
@@ -185,7 +185,7 @@
                         </div> <?php
             }
             else{
-                $rand = rand(1,3); //Random number between 1 and 3
+                $rand = rand(1,3); //Random number between 1 and 3 to randomly assign profile pics to new users
 
                 if ($rand == 1){ 
                     $profile_pic = "assets/images/profile_pics/head_deep_blue.png";
@@ -196,6 +196,7 @@
                 else if ($rand == 3) {
                     $profile_pic = "assets/images/profile_pics/head_red.png";
                 }
+                //Inserts user information into the database, hashes their password, sets their profile pic, and sets their first friend to be the default testuser 
                 $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',Test,')";
                 $db->query($query);
                 if($db){
@@ -206,7 +207,7 @@
                                     <p>Sign up below!</p>
                                 </div>
                                 <div>
-                                    <form name="registration" action="" method="POST">
+                                    <form name="registration" action="" method="POST"> <!-- notifying the user they have successfully registered an account -->
                                         <?php echo "You have successfully registered <br/>Click Here To <a href='login.php'>Login</a>"; ?> <br>
                                         <input type="text" name="firstName" placeholder="First Name" required/>
                                         <input type="text" name="lastName" placeholder="Last Name" required/>
@@ -236,7 +237,7 @@
                         <p>Sign up below!</p>
                     </div>
                     <div>
-                        <form name="registration" action="" method="POST">
+                        <form name="registration" action="" method="POST"> <!-- Register form -->
                             <input type="text" name="firstName" placeholder="First Name" required/>
                             <input type="text" name="lastName" placeholder="Last Name" required/>
                             <input type="text" name="email" placeholder="Email" required/>
