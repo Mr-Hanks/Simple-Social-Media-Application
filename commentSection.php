@@ -22,7 +22,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="styles.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
 
     ?>
 
-    <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
+    <form action="commentSection.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
         <textarea name="post_body"></textarea>
         <input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
     </form>

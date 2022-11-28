@@ -83,6 +83,8 @@ nav a:hover {
     width: 255px;
     float: left;
     margin-bottom: 20px;
+    margin-top: 75px;
+    margin-left: 130px;
 }
 
 .user_details_left_right {
@@ -101,6 +103,8 @@ nav a:hover {
     width: 70%;
     z-index: -1;
     min-height: 170px;
+    margin-top: 75px;
+    margin-right: 135px;
 }
 
 .post_form {
@@ -279,8 +283,6 @@ textarea:focus {
     word-wrap: break-word;
 }
 
-
-
 .default {
     background-color: #bdc3c7;
 }
@@ -300,6 +302,13 @@ textarea:focus {
     color: #fff;
 }
 
+.posted_by {
+    color: #ACACAC;
+}
+
+.post_comment{
+    display:none;
+}
 
 .delete_button {
     height: 22px;
@@ -319,6 +328,7 @@ textarea:focus {
     width: 70%;
     z-index: 1;
     position: relative;
+    margin-top: 75px;
 }
 
 .profile_info_bottom {
@@ -359,9 +369,4 @@ textarea:focus {
     float: left;
 }
 
-.postedImage img {
-    max-height: 300px;
-    max-width: 100%;
-    display: block;
-    margin: 5px auto;
-}
+

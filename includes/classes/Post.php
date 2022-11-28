@@ -162,7 +162,7 @@ class Post
                                     <img src='$profile_pic' width='50'>
                                 </div>
 
-                                <div class='posted_by' style='color: #ACACAC;'>
+                                <div class='posted_by'>
                                     <a href='profile.php?profile_username=$added_by'>$first_name $last_name </a> $time_message
                                     $delete_button
                                 </div>
@@ -179,8 +179,8 @@ class Post
                                     <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
                                 </div>
                             </div>
-                            <div class='post_comment' id='toggleComment$id' style='display:none;'>
-                                <iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
+                            <div class='post_comment' id='toggleComment$id'>
+                                <iframe src='commentSection.php?post_id=$id' id='comment_iframe'></iframe>
                             </div>
                             <hr>";
                 }
@@ -190,7 +190,7 @@ class Post
                     $(document).ready(function() {
                         $('#post<?php echo $id; ?>').on('click', function() {
                             bootbox.confirm("Are you sure you want to delete this post?", function(result) {
-                                $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {
+                                $.post("includes/form_handlers/deletePost.php?post_id=<?php echo $id; ?>", {
                                     result: result
                                 });
 
@@ -325,7 +325,7 @@ class Post
                                     <img src='$profile_pic' width='50'>
                                 </div>
 
-                                <div class='posted_by' style='color: #ACACAC;'>
+                                <div class='posted_by'>
                                     <a href='profile.php?profile_username=$added_by'>$first_name $last_name </a> $time_message
                                     $delete_button
                                 </div>
@@ -341,8 +341,8 @@ class Post
                                     <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
                                 </div>
                             </div>
-                            <div class='post_comment' id='toggleComment$id' style='display:none;'>
-                                <iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
+                            <div class='post_comment' id='toggleComment$id'>
+                                <iframe src='commentSection.php?post_id=$id' id='comment_iframe'></iframe>
                             </div>
                             <hr>";
 
@@ -351,9 +351,8 @@ class Post
                     
                     $(document).ready(function() {
                         $('#post<?php echo $id; ?>').on('click', function() {
-                            // Comes with Bootbox JS
                             bootbox.confirm("Are you sure you want to delete this post?", function(result) {
-                                $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {
+                                $.post("includes/form_handlers/deletePost.php?post_id=<?php echo $id; ?>", {
                                     result: result
                                 });
 

@@ -83,7 +83,7 @@
 
  <head>
      <meta charset="UTF-8">
-     <link rel="stylesheet" href="assets/css/styles.css">
+     <link href="styles.css" type="text/css" rel="stylesheet">
  </head>
 
  <body>

@@ -52,11 +52,11 @@ if (isset($_POST['post'])) {
     <div class="posts_area">
         <!-- Posts are going to be loaded via ajax -->
     </div>
-    <img id="loading" src="assets/images/icons/loading.gif" alt="Loading">
+    <img id="loading" src="images/icons/loading.gif" alt="Loading">
 </div>
 
 
-<!-- Provides infinite scrolling for multiple posts -->
+
 <script>
     $(function() {
 
@@ -64,16 +64,6 @@ if (isset($_POST['post'])) {
         var inProgress = false;
 
         loadPosts(); //Load posts
-
-        $(window).scroll(function() {
-            var bottomElement = $(".status_post").last();
-            var noMorePosts = $('.posts_area').find('.noMorePosts').val();
-
-            // isElementInViewport uses getBoundingClientRect()
-            if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
-                loadPosts();
-            }
-        });
 
         function loadPosts() {
             if (inProgress) { //In the case of loading some posts, just return
@@ -86,7 +76,7 @@ if (isset($_POST['post'])) {
             var page = $('.posts_area'); 
 
             $.ajax({
-                url: "includes/handlers/ajax_load_posts.php", //ajax loads the posts for that specific user on the main page
+                url: "includes/handlers/loadPostsAJAX.php", //ajax loads the posts for that specific user on the main page
                 type: "POST",
                 data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
                 cache: false,
@@ -99,24 +89,6 @@ if (isset($_POST['post'])) {
                 }
             });
         }
-
-        //Check if the element is in view
-        function isElementInView(el) {
-            var rect = el.getBoundingClientRect();
-
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && 
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth) 
-            );
-        }
+        
     });
 </script>
-
-
-
-</div> <!-- End of wrapper div in header.php -->
-</body>
-
-</html>

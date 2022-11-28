@@ -188,13 +188,13 @@
                 $rand = rand(1,3); //Random number between 1 and 3 to randomly assign profile pics to new users
 
                 if ($rand == 1){ 
-                    $profile_pic = "assets/images/profile_pics/head_deep_blue.png";
+                    $profile_pic = "images/profile_pics/head_deep_blue.png";
                 }
                 else if ($rand == 2){ 
-                    $profile_pic = "assets/images/profile_pics/head_wet_asphalt.png";
+                    $profile_pic = "images/profile_pics/head_wet_asphalt.png";
                 }
                 else if ($rand == 3) {
-                    $profile_pic = "assets/images/profile_pics/head_red.png";
+                    $profile_pic = "images/profile_pics/head_red.png";
                 }
                 //Inserts user information into the database, hashes their password, sets their profile pic, and sets their first friend to be the default testuser 
                 $query = "INSERT INTO users (first_name, last_name, email, username, password, profile_pic, num_posts, num_likes, friend_array) VALUES ('$firstName', '$lastName', '$email', '$username', '".md5($password)."', '$profile_pic', '0', '0', ',Test,')";

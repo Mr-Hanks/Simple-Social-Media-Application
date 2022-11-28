@@ -14,13 +14,6 @@ if (isset($_GET['profile_username'])) {
     $num_friends = (substr_count($user_array['friend_array'], ",")) - 1;
 }?>
 
-<style>
-    .wrapper {
-        margin-left: 0px;
-        padding-left: 0px;
-    }
-</style>
-
 <!-- User Details -->
 <div class="profile_left">
     <img src="<?php echo $user_array['profile_pic']; ?>" alt="profile_pic">
@@ -31,11 +24,11 @@ if (isset($_GET['profile_username'])) {
         <p><?php echo "Friends: " . $num_friends; ?></p>
     </div>
 
-    
+        
 
     <input type="submit" class="deep_purple" data-toggle="modal" data-target="#post_form" value="Post Something">
 
-    
+        
 
 </div>
 
@@ -45,7 +38,7 @@ if (isset($_GET['profile_username'])) {
             <div class="posts_area">
                 <!-- Posts are going to be loaded using ajax -->
             </div>
-            <img id="loading" src="assets/images/icons/loading.gif" alt="Loading">
+            <img id="loading" src="images/icons/loading.gif" alt="Loading">
         </div>
        
     </div>
@@ -86,7 +79,7 @@ if (isset($_GET['profile_username'])) {
     $('#submit_profile_post').click(function() {
         $.ajax({
             type: "POST",
-            url: "includes/handlers/ajax_submit_profile_post.php",
+            url: "includes/handlers/submitProfilePostAJAX.php",
             data: $('form.profile_post').serialize(),
             success: function(msg) {
                 $('#post_form').modal('hide');
@@ -111,16 +104,6 @@ if (isset($_GET['profile_username'])) {
 
         loadPosts(); //Load posts
 
-        $(window).scroll(function() {
-            var bottomElement = $(".status_post").last();
-            var noMorePosts = $('.posts_area').find('.noMorePosts').val();
-
-            // isElementInViewport uses getBoundingClientRect()
-            if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
-                loadPosts();
-            }
-        });
-
         function loadPosts() {
             if (inProgress) { //In the case of loading some posts, just return
                 return;
@@ -132,7 +115,7 @@ if (isset($_GET['profile_username'])) {
             var page = $('.posts_area'); 
 
             $.ajax({ //ajax loads the posts for that specific user on their profile page
-                url: "includes/handlers/ajax_load_profile_posts.php",
+                url: "includes/handlers/loadProfilePostsAJAX.php",
                 type: "POST",
                 data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
                 cache: false,
@@ -146,23 +129,7 @@ if (isset($_GET['profile_username'])) {
             });
         }
 
-        //Check if the element or post is in view
-        function isElementInView(el) {
-            var rect = el.getBoundingClientRect();
-
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
+        
     });
 </script>
 
-
-
-</div> <!-- End of wrapper div in header.php -->
-</body>
-
-</html>
