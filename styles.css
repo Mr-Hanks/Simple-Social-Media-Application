@@ -326,7 +326,7 @@ textarea:focus {
 .profile_main_column {
     min-width: 675px;
     float: left;
-    left: 300px;
+    left: 350px;
     width: 70%;
     z-index: 1;
     position: relative;
