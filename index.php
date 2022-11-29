@@ -10,7 +10,7 @@ if (isset($_POST['post'])) {
     if ($uploadOk) {
         $post = new Post($con, $userLoggedIn); //Creates a new post instance of the Post class and passes the user who created the post
 
-        $post->submitPost($_POST['post_text']); //Submit the post from the method in the Post.php file
+        $post->submitPost($_POST['post_text']); //Submit the post from the method in the postClass.php file
 
         header("location: index.php"); //No need to resubmit the form when refreshing the page
     }

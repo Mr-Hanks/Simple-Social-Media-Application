@@ -14,7 +14,7 @@ class User {
     }
 
     public function getUsername() { //gets the username
-        return $this->user['username']; //Used in Post.php 
+        return $this->user['username']; //Used in postClass.php 
     }
 
     public function getNumPosts() { //gets the number of posts

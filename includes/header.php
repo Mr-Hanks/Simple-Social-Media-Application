@@ -27,8 +27,8 @@
 </head>
 
 <?php require 'config/config.php'; //Includes the database $connection variable
-include("includes/classes/User.php"); //Includes the USER CLASS
-include("includes/classes/Post.php"); //Includes the Post CLASS
+include("includes/classes/userClass.php"); //Includes the USER CLASS
+include("includes/classes/postClass.php"); //Includes the Post CLASS
 
 
 //Authentication

@@ -83,7 +83,7 @@ nav a:hover {
     width: 255px;
     float: left;
     margin-bottom: 20px;
-    margin-top: 75px;
+    margin-top: 50px;
     margin-left: 130px;
 }
 
@@ -99,12 +99,14 @@ nav a:hover {
     margin-right: 5px;
 }
 .main_column {
+    position: absolute;
     float: right;
-    width: 70%;
-    z-index: -1;
+    width: 60%;
+    z-index: 1;
     min-height: 170px;
-    margin-top: 75px;
+    margin-top: 50px;
     margin-right: 135px;
+    margin-left: 425px;
 }
 
 .post_form {
@@ -324,11 +326,11 @@ textarea:focus {
 .profile_main_column {
     min-width: 675px;
     float: left;
-    left: 400px;
+    left: 300px;
     width: 70%;
     z-index: 1;
     position: relative;
-    margin-top: 75px;
+    margin-top: 50px;
 }
 
 .profile_info_bottom {
