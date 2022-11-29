@@ -116,8 +116,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `profile_pic`, `num_posts`, `num_likes`, `friend_array`) VALUES
-(7, 'Collin', 'Hanks', 'collin', 'collinnhankss@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'assets/images/profile_pics/head_red.png', 65, 7, ',Test,'),
-(13, 'Test', 'User', 'Test', 'testuser@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'assets/images/profile_pics/head_deep_blue.png', 2, 1, ',');
+(7, 'Collin', 'Hanks', 'collin', 'collinnhankss@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'images/profile_pics/head_red.png', 65, 7, ',Test,'),
+(13, 'Test', 'User', 'Test', 'testuser@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'images/profile_pics/head_deep_blue.png', 2, 1, ',');
 
 --
 -- Indexes for dumped tables
