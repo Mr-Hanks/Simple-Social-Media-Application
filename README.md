@@ -1,2 +1,2 @@
-# infx371project4
-This assignment is to create a social media website. You will create the database as well as the PHP, CSS, etc for the site to meet the requirements. Submit all files that you use to create the assignment, including an export of your DB from MySQL.
+# Simple-Social-Media-Application
+A simple social media app with posting functionality as well as liking and commenting on posts. You are automatically given "Test User" as a friend when your account is created. More functionality could be added to this app in the future, leaves a lot of room for further exploration. 
